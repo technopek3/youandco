@@ -20,16 +20,16 @@
     <div id="app" class="">
         <div class="h-screen flex overflow-hidden bg-gray-100">
             <!-- start :: mobile nav -->
-            @include('management.components.mobile_navigation')
+            @include('pro.components.mobile_navigation')
             <!-- End :: mobile nav -->
 
             <!-- start :: desktop nav -->
-            @include('management.components.desktop_navigation')
+            @include('pro.components.desktop_navigation')
             <!-- start :: desktop nav -->
 
             <div class="flex flex-col w-0 flex-1 overflow-hidden relative">
                  <!-- start :: ttop_bar -->
-                @include('management.components.top_bar')
+                @include('pro.components.top_bar')
                 <!-- start :: top_bar -->
                 <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
                     <div class="pt-2 pb-6 md:py-6" >

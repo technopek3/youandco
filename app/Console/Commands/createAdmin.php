@@ -47,10 +47,11 @@ class createAdmin extends Command
             'name'=> UserPermissionsEnum::ADMIN_ROLE
         ]);
 
+
         $user->assignRole($role);
 
         $admin_permission = Permission::firstOrCreate(['name'=>UserPermissionsEnum::ADMIN_PERMISSION]);
-        $user->givePermissionTo($admin_permission);
+        $user->givePermissionTo($admin_permission); 
         $this->info('admin created');
         return 0;
     }

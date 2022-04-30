@@ -6,7 +6,7 @@ use App\Enums\User\UserPermissionsEnum;
 use Closure;
 use Illuminate\Http\Request;
 
-class management
+class pro
 {
     /**
      * Handle an incoming request.

@@ -185,9 +185,9 @@
 </template>
 
 <script>
-import Create_experiance from "./Create_experiance.vue";
-import Edit_experiance from '../Experiance/edit.vue';
-import delete_experiance from '../Experiance/delete.vue'
+import Create_experiance from "./create.vue";
+import Edit_experiance from './edit.vue';
+import delete_experiance from './delete.vue'
 export default {
   data() {
     return {

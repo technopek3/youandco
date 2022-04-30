@@ -2,11 +2,8 @@ require('./bootstrap');
 
 import { createApp } from 'vue';
 
-import Form from 'vform';
-window.Form = Form;
-
-import experiances from './management/components/experiances'
-import holidays from './management/components/holidays'
+import experiances from './pro/experiances/index'
+import holidays from './pro/holidays/index'
 
 const app = createApp({})
 

@@ -1,4 +1,4 @@
-@extends('management.master')
+@extends('pro.master')
 
 @section('title')
 Paramètres
@@ -9,7 +9,7 @@ Paramètres
 
 @section('content')
 
-@include('management.components.change_email_request')
+@include('pro.components.change_email_request')
 
 <div class="py-4">
 
@@ -286,6 +286,7 @@ Paramètres
                     <section class="joures_ferie hidden single_panel my-0">
                       <holidays-component token="{{Auth::user()->getApitoken()}}" />
                     </section>
+                  
                     <section class="frais_et_facturation hidden single_panel my-0">
                         <form action="#" method="POST">
                             @csrf

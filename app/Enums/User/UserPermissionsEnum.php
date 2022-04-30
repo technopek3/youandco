@@ -17,7 +17,8 @@ final class UserPermissionsEnum extends Enum
     const PROVIDER_ROLE = 'provider';
 
     /* Actions */
-    const VIEW =  'view';
+    const VIEW =  'view'; # for only one recorde
+    const VIEW_ANY =  'view_ANY';
     const VIEW_SELF =  'view_self';
     const CREATE =  'create';
     const UPDATE =  'update';
@@ -28,6 +29,7 @@ final class UserPermissionsEnum extends Enum
     const PROVIDERS = 'providers';
     const CUSTOMERS = 'customers';
     const ORDERS = 'orders';
+    const EXPERIANCES = 'experiances';
 
     #permissions without modules
 
@@ -39,11 +41,13 @@ final class UserPermissionsEnum extends Enum
             self::PROVIDERS,
             self::CUSTOMERS,
             self::ORDERS,
+            self::EXPERIANCES,
         ];
     }
     public static function getActions(){
         return [
              self::VIEW,  
+             self::VIEW_ANY,  
              self::VIEW_SELF,
              self::CREATE,
              self::UPDATE,
@@ -54,6 +58,7 @@ final class UserPermissionsEnum extends Enum
     public static function getAdminActions(){
         return [
             self::VIEW,  
+            self::VIEW_ANY,  
             self::CREATE,
             self::UPDATE,
             self::DELETE,
@@ -65,6 +70,7 @@ final class UserPermissionsEnum extends Enum
             self::PROVIDERS,
             self::CUSTOMERS,
             self::ORDERS,
+            self::EXPERIANCES,
        ];
     }
     

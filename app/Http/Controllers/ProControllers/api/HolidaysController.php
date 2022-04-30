@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\ProControllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\holiday\holidayCreateRequest;
+use App\Http\Requests\api\holiday\holidayCreateRequest;
+use App\Http\Requests\api\holiday\holidayUpdateRequest;
 use App\Http\Resources\HolidayResources;
 use App\Models\Holiday;
 use Illuminate\Http\Request;
@@ -17,7 +18,10 @@ class HolidaysController extends Controller
      */
     public function index()
     {
-        return HolidayResources::collection(Holiday::orderBy(Holiday::CREATED_AT,'desc')->paginate(10));
+        # add request to index {date start ,end keyword ... } 
+        # Service has data paginated by each filter 
+       
+        return HolidayResources::collection(Holiday::orderBy(Holiday::DATE,'asc')->paginate(2));
     }
 
     /**
@@ -52,9 +56,9 @@ class HolidaysController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Holiday $holiday)
+    {  
+        return response()->json(['name' => $holiday->getName(), 'price' => $holiday->getFee(), 'date' => $holiday->getDate()]);
     }
 
     /**
@@ -75,9 +79,14 @@ class HolidaysController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(holidayUpdateRequest $request, $id)
     {
-        //
+        Holiday::findOrFail($id)->update([
+            Holiday::NAME => $request->name,
+            Holiday::DATE => $request->date,
+            Holiday::FEE => $request->price,
+        ]);
+        return response()->noContent();
     }
 
     /**
@@ -86,8 +95,9 @@ class HolidaysController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Holiday $holiday)
     {
-        //
+        $holiday->delete();
+        return response()->noContent();
     }
 }

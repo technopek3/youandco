@@ -63,7 +63,7 @@ class permissions_command extends Command
 
         }
         
-        Artisan::call('cache:clear');
+        Artisan::call('cache:clear'); # clear cach with spatie commande not this one 
         return 0;
     }
 }

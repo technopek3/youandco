@@ -96,13 +96,12 @@
                 <div class="bg-orange-500 py-6 px-4 sm:px-6">
                   <div class="flex items-center justify-between">
                     <DialogTitle class="text-lg font-medium text-white">
-                      Panel title
+                     Ajouter nouveau joure férié
                     </DialogTitle>
                   </div>
                   <div class="mt-1">
                     <p class="text-sm text-white">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit
-                      aliquam ad hic recusandae soluta.
+                      Commencez par remplir les informations ci-dessous pour créer un nouveau joure férié.
                     </p>
                   </div>
                 </div>
@@ -115,12 +114,11 @@
                           <label
                             for="project-name"
                             class="block text-sm font-medium text-gray-900"
-                            >Nom expérience</label
+                            >Nom du joure</label
                           >
                           <div class="mt-1">
                             <input
                               type="text"
-                              name="experience_name"
                               v-model="name"
                               class="
                                 block
@@ -134,18 +132,40 @@
                             />
                           </div>
                         </div>
-
+   <div>
+                          <label
+                            for="project-name"
+                            class="block text-sm font-medium text-gray-900"
+                          >
+                            Date</label
+                          >
+                          <div class="mt-1">
+                            <input
+                              type="date"
+                              name="project-name"
+                              v-model="date"
+                              class="
+                                block
+                                w-full
+                                rounded-md
+                                border-gray-300
+                                shadow-sm
+                                focus:border-orange-500 focus:ring-orange-500
+                                sm:text-sm
+                              "
+                            />
+                          </div>
+                        </div>
                         <div>
                           <label
                             for="project-name"
                             class="block text-sm font-medium text-gray-900"
                           >
-                            Prix par heur</label
+                            Prix a ajouter par Heur</label
                           >
                           <div class="mt-1">
                             <input
                               type="number"
-                              name="project-name"
                               v-model="price"
                               class="
                                 block
@@ -208,9 +228,9 @@
                       focus:ring-orange-500
                       focus:ring-offset-2
                     "
-                    @click="store_experiance"
+                    @click="store_holiday"
                   >
-                    Save
+                    Enregistrer
                   </button>
                 </div>
               </div>
@@ -223,7 +243,6 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import {
   Dialog,
   DialogOverlay,
@@ -237,6 +256,7 @@ export default {
     return {
       name: "",
       price: 0.00,
+      date: Date.now(),
     };
   },
   props: ["open", "token"],
@@ -250,9 +270,9 @@ export default {
   },
   methods: {
     close_panel() {
-      this.$parent.Troggle_side_new_experiance();
+      this.$parent.Troggle_side_new_holidays();
     },
-    store_experiance() {
+    store_holiday() {
       const config = {
         headers: {
           Authorization: `Bearer ${this.token}`,
@@ -260,11 +280,13 @@ export default {
       };
 
       axios
-        .post("/api/experiance", { name: this.name, price: this.price }, config)
+        .post("/api/holiday", { name: this.name, date: this.date, price: this.price }, config)
         .then((res) => {
+            console.log('res = ',res)
           this.name ='';
           this.price =0.00;
-          this.$parent.get_experiances(),
+          this.date = null;
+          this.$parent.get_holidays(),
           this.close_panel();
         })
         .catch((e) => console.error(e.message));

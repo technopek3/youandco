@@ -13,5 +13,6 @@ Route::post('/profile/update/password',[ProfileController::class,'update_passwor
 Route::post('/profile/update/email',[ProfileController::class,'update_email'])->name('profile.update_email');
 
 #settings
-Route::get('/Parametres',[SettingsController::class,'edit'])->name('settings.edit');
+Route::get('/parametres',[SettingsController::class,'edit'])->name('settings.edit');
+
 

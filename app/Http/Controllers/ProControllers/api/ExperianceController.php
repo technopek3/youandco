@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\ProControllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\api\experianceStoreRequest;
-use App\Http\Requests\api\experianceUpdateRequest;
+use App\Http\Requests\api\experiance\experianceStoreRequest;
+use App\Http\Requests\api\experiance\experianceUpdateRequest;
 use App\Http\Resources\ExperianceResources;
 use App\Models\Experiance;
-use Illuminate\Http\Request;
 
 class ExperianceController extends Controller
 {

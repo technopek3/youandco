@@ -96,13 +96,12 @@
                 <div class="bg-orange-500 py-6 px-4 sm:px-6">
                   <div class="flex items-center justify-between">
                     <DialogTitle class="text-lg font-medium text-white">
-                      l'ajoue du joure Fire
+                     Édition du joure férié
                     </DialogTitle>
                   </div>
                   <div class="mt-1">
                     <p class="text-sm text-white">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit
-                      aliquam ad hic recusandae soluta.
+                      Commencez par remplir les informations ci-dessous pour modifier le joure férié.
                     </p>
                   </div>
                 </div>
@@ -115,7 +114,7 @@
                           <label
                             for="project-name"
                             class="block text-sm font-medium text-gray-900"
-                            >Nom joure</label
+                            >Nom du joure</label
                           >
                           <div class="mt-1">
                             <input
@@ -206,7 +205,7 @@
                     "
                     @click="close_panel"
                   >
-                    Cancel
+                    Annuler
                   </button>
                   <button
                     type="submit"
@@ -229,9 +228,9 @@
                       focus:ring-orange-500
                       focus:ring-offset-2
                     "
-                    @click="store_holiday"
+                    @click="update_holiday"
                   >
-                    Enregistrer
+                    Mise a jour
                   </button>
                 </div>
               </div>
@@ -260,7 +259,7 @@ export default {
       date: Date.now(),
     };
   },
-  props: ["open", "token"],
+  props: ["open", "token","id"],
   components: {
     Dialog,
     DialogOverlay,
@@ -271,9 +270,9 @@ export default {
   },
   methods: {
     close_panel() {
-      this.$parent.Troggle_side_new_holidays();
+      this.$parent.Troggle_side_edit_holiday();
     },
-    store_holiday() {
+    get_holiday() {
       const config = {
         headers: {
           Authorization: `Bearer ${this.token}`,
@@ -281,16 +280,36 @@ export default {
       };
 
       axios
-        .post("/api/holiday", { name: this.name, date: this.date, price: this.price }, config)
+        .get(`/api/holiday/${this.id}`, config)
+        .then(({data}) => {
+        this.name =data.name;
+        this.price =data.price;
+        this.date = data.date; 
+         
+        })
+        .catch((e) => console.error(e.message));
+    },
+    update_holiday() {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${this.token}`,
+        },
+      };
+
+      axios
+        .put(`/api/holiday/${this.id}`, { name: this.name, date: this.date, price: this.price }, config)
         .then((res) => {
-            console.log('res = ',res)
-          this.name ='';
-          this.price =0.00;
-          this.date = null;
           this.$parent.get_holidays(),
           this.close_panel();
         })
         .catch((e) => console.error(e.message));
+    },
+  },
+    watch: {
+    id: function (newVal, oldVal) {
+      if (newVal != null) {
+        this.get_holiday();
+      }
     },
   },
   setup() {

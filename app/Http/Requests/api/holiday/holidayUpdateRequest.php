@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\holiday;
+namespace App\Http\Requests\api\holiday;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class holidayCreateRequest extends FormRequest
+class holidayUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -208,9 +208,9 @@
                       focus:ring-orange-500
                       focus:ring-offset-2
                     "
-                    @click.prevent="update_experiance"
+                    @click="store_experiance"
                   >
-                    mise a joure
+                    Save
                   </button>
                 </div>
               </div>
@@ -235,10 +235,10 @@ export default {
   data() {
     return {
       name: "",
-      price: 0.0,
+      price: 0.00,
     };
   },
-  props: ["open", "token", "id"],
+  props: ["open", "token"],
   components: {
     Dialog,
     DialogOverlay,
@@ -249,9 +249,9 @@ export default {
   },
   methods: {
     close_panel() {
-      this.$parent.Troggle_side_edit_experiance();
+      this.$parent.Troggle_side_new_experiance();
     },
-    get_experiance() {
+    store_experiance() {
       const config = {
         headers: {
           Authorization: `Bearer ${this.token}`,
@@ -259,39 +259,14 @@ export default {
       };
 
       axios
-        .get(`/api/experiance/${this.id}`, config)
+        .post("/api/experiance", { name: this.name, price: this.price }, config)
         .then((res) => {
-          this.name = res.data.name;
-          this.price = res.data.price;
+          this.name ='';
+          this.price =0.00;
+          this.$parent.get_experiances(),
+          this.close_panel();
         })
         .catch((e) => console.error(e.message));
-    },
-    update_experiance() {
-   
-    const config = {
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    };
-
-    axios.put(`/api/experiance/${this.id}`,
-                { name: this.name, price: this.price },
-                config
-            )
-      .then((res) => {
-          this.$parent.get_experiances() ,
-          this.$parent.Troggle_side_edit_experiance() 
-          
-      })
-      .catch((e) => console.error(e.message));
-  },
-  },
-  
-  watch: {
-    id: function (newVal, oldVal) {
-      if (newVal != null) {
-        this.get_experiance();
-      }
     },
   },
   setup() {
