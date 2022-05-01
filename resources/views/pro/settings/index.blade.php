@@ -151,7 +151,7 @@ Paramètres
 
                 <div class=" sm:px-6 lg:px-0 lg:col-span-9">
                     <section class="profile_section single_panel">
-                        <form action="{{route('profile.update')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('pro.profile.update')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="shadow sm:rounded-md sm:overflow-hidden">
@@ -239,7 +239,7 @@ Paramètres
                     </section>
 
                     <section class="Mot_de_passe_section hidden single_panel my-0">
-                        <form action="{{route('profile.updatepassword')}}" method="POST">
+                        <form action="{{route('pro.profile.updatepassword')}}" method="POST">
                             @csrf
                             <div class="shadow sm:rounded-md sm:overflow-hidden">
                                 <div class="bg-white pb-6 px-4 sm:p-6">

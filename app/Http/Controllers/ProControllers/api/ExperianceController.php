@@ -7,6 +7,7 @@ use App\Http\Requests\api\experiance\experianceStoreRequest;
 use App\Http\Requests\api\experiance\experianceUpdateRequest;
 use App\Http\Resources\ExperianceResources;
 use App\Models\Experiance;
+use Illuminate\Support\Facades\Request;
 
 class ExperianceController extends Controller
 {
@@ -15,8 +16,10 @@ class ExperianceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
+    
     {
+        
         return  ExperianceResources::collection(Experiance::get());
     }
 

@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\managementControllers;
+namespace App\Http\Controllers\ProControllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\profile\ProfileUpdateEmail;
 use App\Http\Requests\profile\ProfileUpdatePassword;
 use App\Http\Requests\profile\profileUpdateRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    public function edit_profile()
+    public function editProfile()
     {
-        return view('management.settings.index');
+        return view('pro.settings.index');
     }
 
-    public function update_profile(profileUpdateRequest $request)
+    public function updateProfile(profileUpdateRequest $request)
     {
         auth()->user()->update([
             User::FIRST_NAME => $request->first_name,
@@ -33,7 +32,7 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Vous infornation ont été mise a joure');
     }
 
-    public function update_password(ProfileUpdatePassword $request)
+    public function updatePassword(ProfileUpdatePassword $request)
     {
         Auth::user()->update([
             User::PASSWORD => Hash::make($request->password)
@@ -42,7 +41,7 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Vous infornation ont été mise a joure');
     }
 
-    public function update_email(ProfileUpdateEmail $request)
+    public function updateEmail(ProfileUpdateEmail $request)
     {
         return 'mise a jours des email will take place when i add emails';
     }

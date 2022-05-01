@@ -259,7 +259,7 @@ export default {
       };
 
       axios
-        .post("/api/experiance", { name: this.name, price: this.price }, config)
+        .post("/proapi/experiance", { name: this.name, price: this.price }, config)
         .then((res) => {
           this.name ='';
           this.price =0.00;
