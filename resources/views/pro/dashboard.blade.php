@@ -1,4 +1,4 @@
-@extends('management.master')
+@extends('pro.master')
 
 @section('title')
     Dashboard

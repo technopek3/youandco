@@ -195,7 +195,7 @@ export default {
 
       axios
         .delete(
-            `/api/experiance/${this.exp.id}`,
+            `/proapi/experiance/${this.exp.id}`,
             config
         )
         .then((res) => {

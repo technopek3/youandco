@@ -37,12 +37,12 @@ class AuthenticatedSessionController extends Controller
         if (auth()->user()->hasRole(UserPermissionsEnum::ADMIN_ROLE)) {
 
             #create API token for admin 
-            $api_token = Auth::user()->createToken('admin_token')->plainTextToken;
+            $api_token = Auth::user()->createToken('admin_token',['pro_user'])->plainTextToken;
             
             #update api token for admin
             Auth::user()->update([User::API_TOKEN => $api_token]);
 
-            return redirect()->route('management.dashboard');
+            return redirect()->route('pro.dashboard');
         } else {
             return 'you are not admin';
         }

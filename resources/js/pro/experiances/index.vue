@@ -229,7 +229,7 @@ export default {
       };
 
       axios
-        .get("/api/experiance", config)
+        .get("/proapi/experiance", config)
         .then((res) => {
           this.experiances = null;
           this.experiances = res.data.data

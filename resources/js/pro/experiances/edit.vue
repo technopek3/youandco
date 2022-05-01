@@ -274,7 +274,7 @@ export default {
       },
     };
 
-    axios.put(`/api/experiance/${this.id}`,
+    axios.put(`/proapi/experiance/${this.id}`,
                 { name: this.name, price: this.price },
                 config
             )
